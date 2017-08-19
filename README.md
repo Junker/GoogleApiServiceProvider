@@ -1,4 +1,4 @@
-# googleApiServiceProvi
+# GoogleApiServiceProvider
 
 Google API Service Provider for Silex
 
@@ -22,5 +22,5 @@ The best way to install HandlerSocketServiceProvider is to use a [Composer](http
 ```
 
 ## Documentation
-https://github.com/google/google-api-php-client
-https://code.google.com/p/google-api-php-client/wiki/OAuth2
+* https://github.com/google/google-api-php-client
+* https://code.google.com/p/google-api-php-client/wiki/OAuth2
