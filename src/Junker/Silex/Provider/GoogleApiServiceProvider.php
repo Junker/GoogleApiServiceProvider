@@ -34,7 +34,7 @@ class GoogleApiServiceProvider implements ServiceProviderInterface
 				$client->setClientId($app['google.api.client_secret']);
 			}
 
-			if (isset($app['google.api.scopes']) && is_array($app['google.api.scopes']))
+			if (isset($app['google.api.scopes']))
 			{
 				$client->setScopes($app['google.api.scopes']);
 			} 
