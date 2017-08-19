@@ -40,7 +40,7 @@ class GoogleApiServiceProvider implements ServiceProviderInterface
 			} 
 			else 
 			{
-				throw new Exception("Api scopes must be defined", 1);
+				throw new \Exception("Api scopes must be defined", 1);
 			}
 
 			return $client;
