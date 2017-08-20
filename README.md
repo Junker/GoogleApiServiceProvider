@@ -11,16 +11,21 @@ The best way to install HandlerSocketServiceProvider is to use a [Composer](http
 
 ```php
 	$app->register(new Junker\Silex\Provider\GoogleApiServiceProvider(), [
-		'google.api.scopes' => 'http://www.google.com/calendar/feeds/ https://www.googleapis.com/auth/androidpublisher', #required
-		'google.api.key_file' => __DIR__.'/../google.json', #optional
-		'google.api.api_key' => 'AIzgSyrQTNQ-kNhhwVYjTLakWEW_T89zbCvzYS8', #optional
-		'google.api.client_id' => '22166332432432113784.apps.googleusercontent.com', #optional
-		'google.api.client_secret' => 'qa4R-T3-K7p4hWGtZ1SVpMlr.apps.googleusercontent.com', #optional
+		#Oauth instance
+		'google.api.client.id' => '22166332432432113784.apps.googleusercontent.com', #optional
+		'google.api.client.secret' => 'qa4R-T3-K7p4hWGtZ1SVpMlr.apps.googleusercontent.com', #optional
+		'google.api.client.scopes' => ['https://www.googleapis.com/auth/userinfo.profile'], #optional
+
+		'google.api.service.key_file' => __DIR__.'/../google.json', #optional
+		'google.api.service.scopes' => __DIR__.'/../google.json', #optional
+
+		'google.api.developer.key' => 'AIzgSyrQTNQ-kNhhwVYjTLakWEW_T89zbCvzYS8', #optional
 	]);
 
-	$client = $app['google.api'];
+	$oauth_client = $app['google.api.client'];
+	$service_client = $app['google.api.service'];
+	$developer_client = $app['google.api.developer'];
 ```
 
 ## Documentation
 * https://github.com/google/google-api-php-client
-* https://code.google.com/p/google-api-php-client/wiki/OAuth2
