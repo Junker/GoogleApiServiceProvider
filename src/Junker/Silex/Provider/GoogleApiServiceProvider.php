@@ -2,15 +2,15 @@
 
 namespace Junker\Silex\Provider;
 
-use Silex\Application;
-use Silex\ServiceProviderInterface;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 
 
 class GoogleApiServiceProvider implements ServiceProviderInterface
 {
-	public function register(Application $app)
+	public function register(Container $app)
 	{
-		$app['google.api.client'] = $app->share(function() use ($app)
+		$app['google.api.client'] = function($app)
 		{
 			$client = new \Google_Client();
 
@@ -30,9 +30,9 @@ class GoogleApiServiceProvider implements ServiceProviderInterface
 				throw new \Exception("google.api.client.scopes must be defined", 1);
 
 			return $client;
-		});
+		};
 
-		$app['google.api.developer'] = $app->share(function() use ($app)
+		$app['google.api.developer'] = function($app)
 		{
 			$client = new \Google_Client();
 
@@ -45,9 +45,9 @@ class GoogleApiServiceProvider implements ServiceProviderInterface
 				$client->setScopes($app['google.api.developer.scopes']);
 
 			return $client;
-		});
+		};
 
-		$app['google.api.service'] = $app->share(function() use ($app)
+		$app['google.api.service'] = function($app)
 		{
 			$client = new \Google_Client();
 
@@ -55,17 +55,11 @@ class GoogleApiServiceProvider implements ServiceProviderInterface
 				$client->setAuthConfig($app['google.api.service.key_file']);
 			else
 				throw new \Exception("google.api.service.key_file must be defined", 1);
-			
-			
+
 			if (isset($app['google.api.service.scopes']))
 				$client->setScopes($app['google.api.service.scopes']);
 
 			return $client;
-		});
-	}
-
-	public function boot(Application $app)
-	{
-
+		};
 	}
 }
